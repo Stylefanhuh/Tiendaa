@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Papus // Tienda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="cube"></div>
+    <span class="pixel">LOS PAPUS · TIENDA</span>
+  </div>
+  <nav class="hotbar">
+    <button data-target="ofertas" class="active">Ofertas</button>
+    <button data-target="rangos">Rangos</button>
+    <button data-target="kits">Kits</button>
+    <button data-target="cosmeticos">Cosmeticos</button>
+    <button data-target="cajas">Cajas</button>
+    <button data-target="skin">Skin</button>
+  </nav>
+  <button id="cartBtn" class="cart-btn">
+    CARRITO <span id="cartCount" class="cart-count">0</span>
+  </button>
+</header>
+
+<div class="hero">
+  <div class="hero-copy">
+    <h1>MEJORA TU<br>PARTIDA <span class="accent">/PAPUS</span></h1>
+    <p>Catalogo visual de rangos, kits y cajas del servidor. Todavia sin pasarela de pago: esto es la vitrina antes de conectar el sistema real.</p>
+    <div class="tags">
+      <span>SERVER 1.21.11</span>
+      <span>PHOENIXCRATES</span>
+      <span>CATALOGO DEMO</span>
+    </div>
+  </div>
+
+  <div class="skin-viewer panel" id="skin">
+    <div class="label">VISOR DE SKIN 3D</div>
+
+    <div class="skin-frame">
+      <canvas id="skin-canvas"></canvas>
+      <div id="skin-loading" class="skin-loading">CARGANDO...</div>
+    </div>
+
+    <div class="skin-form">
+      <input id="skinInput" type="text" placeholder="Tu nick de Minecraft..." autocomplete="off" />
+      <button id="skinBtn">VER</button>
+    </div>
+
+    <div class="skin-controls">
+      <button id="rotateToggle" class="mini-btn active">GIRO AUTO</button>
+      <span class="skin-hint">Arrastra para rotar manualmente</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section id="ofertas">
+    <div class="section-head">
+      <h2 class="pixel">OFERTAS DESTACADAS</h2>
+      <small>Tiempo limitado — vuelve a rotar cada ciclo</small>
+    </div>
+    <div class="offer-strip">
+
+      <article class="offer-card slot r-epic">
+        <div class="offer-badge">-20%</div>
+        <div class="icon icon-epic"></div>
+        <div class="name">MVP+</div>
+        <div class="price-row">
+          <span class="price-old">9.500 PPC</span>
+          <span class="price-new">7.600 PPC</span>
+        </div>
+        <div class="countdown" data-hours="6">--:--:--</div>
+        <button class="buy" data-msg="MVP+ (oferta) anadido al carrito" data-name="MVP+ (oferta)" data-price="7600">Anadir</button>
+      </article>
+
+      <article class="offer-card slot r-legendary">
+        <div class="offer-badge">-15%</div>
+        <div class="icon icon-legendary"></div>
+        <div class="name">CAJA LEGENDARIA</div>
+        <div class="price-row">
+          <span class="price-old">4.800 PPC</span>
+          <span class="price-new">4.080 PPC</span>
+        </div>
+        <div class="countdown" data-hours="6">--:--:--</div>
+        <button class="buy" data-msg="Caja Legendaria (oferta) anadida al carrito" data-name="Caja Legendaria (oferta)" data-price="4080">Anadir</button>
+      </article>
+
+      <article class="offer-card slot r-rare">
+        <div class="offer-badge">-10%</div>
+        <div class="icon icon-rare"></div>
+        <div class="name">KIT CONSTRUCTOR</div>
+        <div class="price-row">
+          <span class="price-old">1.500 PPC</span>
+          <span class="price-new">1.350 PPC</span>
+        </div>
+        <div class="countdown" data-hours="6">--:--:--</div>
+        <button class="buy" data-msg="Kit Constructor (oferta) anadido al carrito" data-name="Kit Constructor (oferta)" data-price="1350">Anadir</button>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="notice">
+    <div class="notice-box">
+      <p><b>Nota:</b> esta es una vitrina de catalogo. Los botones de compra no procesan pagos todavia. Quedan listos para conectar PapusCoin, pasarela real, o lo que se decida despues.</p>
+    </div>
+  </div>
+
+
+  <section id="rangos">
+    <div class="section-head">
+      <h2 class="pixel">RANGOS</h2>
+      <small>Beneficios permanentes en el server</small>
+    </div>
+    <div class="filter-bar" data-scope="rangos">
+      <button class="filter-btn active" data-rarity="all">Todos</button>
+      <button class="filter-btn" data-rarity="r-common">Comun</button>
+      <button class="filter-btn" data-rarity="r-rare">Raro</button>
+      <button class="filter-btn" data-rarity="r-epic">Epico</button>
+      <button class="filter-btn" data-rarity="r-legendary">Legendario</button>
+    </div>
+    <div class="grid" data-grid="rangos">
+
+      <article class="item slot r-common">
+        <div class="icon icon-common"></div>
+        <div class="name">VIP</div>
+        <div class="desc">Prefijo en chat, kit vip diario, 2 homes extra</div>
+        <div class="price">2.000 PPC</div>
+        <button class="buy" data-msg="VIP anadido al carrito" data-name="Rango VIP" data-price="2000">Anadir</button>
+      </article>
+
+      <article class="item slot r-rare">
+        <div class="icon icon-rare"></div>
+        <div class="name">MVP</div>
+        <div class="desc">Todo lo de VIP mas fly en zona spawn, 5 homes</div>
+        <div class="price">5.000 PPC</div>
+        <button class="buy" data-msg="MVP anadido al carrito" data-name="Rango MVP" data-price="5000">Anadir</button>
+      </article>
+
+      <article class="item slot r-epic special-epic">
+        <div class="icon icon-epic"></div>
+        <div class="name">MVP+</div>
+        <div class="desc">Todo lo de MVP mas particulas y tag de color, 8 homes</div>
+        <div class="price">9.500 PPC</div>
+        <button class="buy" data-msg="MVP+ anadido al carrito" data-name="Rango MVP+" data-price="9500">Anadir</button>
+      </article>
+
+      <article class="item slot r-legendary special-legendary">
+        <div class="icon icon-legendary"></div>
+        <div class="name">LEGEND</div>
+        <div class="desc">Rango tope: todos los beneficios y acceso a eventos VIP</div>
+        <div class="price">18.000 PPC</div>
+        <button class="buy" data-msg="LEGEND anadido al carrito" data-name="Rango LEGEND" data-price="18000">Anadir</button>
+      </article>
+
+    </div>
+
+    <div class="ladder">
+      <div class="ladder-track"></div>
+      <div class="ladder-step" style="--pos:10%"><span>VIP</span></div>
+      <div class="ladder-step" style="--pos:38%"><span>MVP</span></div>
+      <div class="ladder-step" style="--pos:66%"><span>MVP+</span></div>
+      <div class="ladder-step" style="--pos:92%"><span>LEGEND</span></div>
+    </div>
+  </section>
+
+  <section id="kits">
+    <div class="section-head">
+      <h2 class="pixel">KITS</h2>
+      <small>Sets de items para arrancar rapido</small>
+    </div>
+    <div class="filter-bar" data-scope="kits">
+      <button class="filter-btn active" data-rarity="all">Todos</button>
+      <button class="filter-btn" data-rarity="r-common">Comun</button>
+      <button class="filter-btn" data-rarity="r-rare">Raro</button>
+      <button class="filter-btn" data-rarity="r-epic">Epico</button>
+    </div>
+    <div class="grid" data-grid="kits">
+
+      <article class="item slot r-common">
+        <div class="icon icon-common"></div>
+        <div class="name">KIT MINERO</div>
+        <div class="desc">Picos, antorchas, comida y armadura de hierro</div>
+        <div class="price">800 PPC</div>
+        <button class="buy" data-msg="Kit Minero anadido" data-name="Kit Minero" data-price="800">Anadir</button>
+      </article>
+
+      <article class="item slot r-common">
+        <div class="icon icon-common"></div>
+        <div class="name">KIT GUERRERO</div>
+        <div class="desc">Espada encantada, arco, flechas y armadura</div>
+        <div class="price">1.200 PPC</div>
+        <button class="buy" data-msg="Kit Guerrero anadido" data-name="Kit Guerrero" data-price="1200">Anadir</button>
+      </article>
+
+      <article class="item slot r-rare">
+        <div class="icon icon-rare"></div>
+        <div class="name">KIT CONSTRUCTOR</div>
+        <div class="desc">Bloques variados, escaleras, tinte y herramientas</div>
+        <div class="price">1.500 PPC</div>
+        <button class="buy" data-msg="Kit Constructor anadido" data-name="Kit Constructor" data-price="1500">Anadir</button>
+      </article>
+
+      <article class="item slot r-epic special-epic">
+        <div class="icon icon-epic"></div>
+        <div class="name">KIT ALQUIMISTA</div>
+        <div class="desc">Pociones completas y soporte de brewing</div>
+        <div class="price">2.400 PPC</div>
+        <button class="buy" data-msg="Kit Alquimista anadido" data-name="Kit Alquimista" data-price="2400">Anadir</button>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="cosmeticos">
+    <div class="section-head">
+      <h2 class="pixel">COSMETICOS</h2>
+      <small>Trails, auras y efectos visuales</small>
+    </div>
+    <div class="filter-bar" data-scope="cosmeticos">
+      <button class="filter-btn active" data-rarity="all">Todos</button>
+      <button class="filter-btn" data-rarity="r-common">Comun</button>
+      <button class="filter-btn" data-rarity="r-rare">Raro</button>
+      <button class="filter-btn" data-rarity="r-epic">Epico</button>
+      <button class="filter-btn" data-rarity="r-legendary">Legendario</button>
+    </div>
+    <div class="grid" data-grid="cosmeticos">
+
+      <article class="item slot r-common">
+        <div class="icon icon-common"></div>
+        <div class="name">NAMETAG COLOR</div>
+        <div class="desc">Tu nombre en chat con un color fijo a eleccion</div>
+        <div class="price">600 PPC</div>
+        <button class="buy" data-msg="Nametag Color anadido" data-name="Nametag Color" data-price="600">Anadir</button>
+      </article>
+
+      <article class="item slot r-rare">
+        <div class="icon icon-rare"></div>
+        <div class="name">TRAIL ESTELAR</div>
+        <div class="desc">Estela de particulas azules al caminar</div>
+        <div class="price">1.800 PPC</div>
+        <button class="buy" data-msg="Trail Estelar anadido" data-name="Trail Estelar" data-price="1800">Anadir</button>
+      </article>
+
+      <article class="item slot r-epic special-epic">
+        <div class="icon icon-epic"></div>
+        <div class="name">AURA DE FUEGO</div>
+        <div class="desc">Anillo de particulas ardientes alrededor del jugador</div>
+        <div class="price">3.200 PPC</div>
+        <button class="buy" data-msg="Aura de Fuego anadida" data-name="Aura de Fuego" data-price="3200">Anadir</button>
+      </article>
+
+      <article class="item slot r-legendary special-legendary">
+        <div class="icon icon-legendary"></div>
+        <div class="name">ALAS DE ENDER</div>
+        <div class="desc">Alas animadas con particulas moradas, unicas del server</div>
+        <div class="price">7.500 PPC</div>
+        <button class="buy" data-msg="Alas de Ender anadidas" data-name="Alas de Ender" data-price="7500">Anadir</button>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="cajas">
+    <div class="section-head">
+      <h2 class="pixel">CAJAS</h2>
+      <small>PhoenixCrates · niveles de rareza</small>
+    </div>
+    <div class="filter-bar" data-scope="cajas">
+      <button class="filter-btn active" data-rarity="all">Todos</button>
+      <button class="filter-btn" data-rarity="r-common">Comun</button>
+      <button class="filter-btn" data-rarity="r-rare">Raro</button>
+      <button class="filter-btn" data-rarity="r-epic">Epico</button>
+      <button class="filter-btn" data-rarity="r-legendary">Legendario</button>
+    </div>
+    <div class="grid" data-grid="cajas">
+
+      <article class="item slot r-common">
+        <div class="icon icon-common"></div>
+        <div class="name">CAJA COMUN</div>
+        <div class="desc">Recompensas basicas garantizadas</div>
+        <div class="price">500 PPC</div>
+        <div class="item-actions">
+          <button class="buy" data-msg="Caja Comun anadida" data-name="Caja Comun" data-price="500">Anadir</button>
+          <button class="preview-btn" data-crate="common">Vista previa</button>
+        </div>
+      </article>
+
+      <article class="item slot r-rare">
+        <div class="icon icon-rare"></div>
+        <div class="name">CAJA RARA</div>
+        <div class="desc">Mejores probabilidades, items encantados</div>
+        <div class="price">1.100 PPC</div>
+        <div class="item-actions">
+          <button class="buy" data-msg="Caja Rara anadida" data-name="Caja Rara" data-price="1100">Anadir</button>
+          <button class="preview-btn" data-crate="rare">Vista previa</button>
+        </div>
+      </article>
+
+      <article class="item slot r-epic special-epic">
+        <div class="icon icon-epic"></div>
+        <div class="name">CAJA EPICA</div>
+        <div class="desc">Items raros y cosmeticos exclusivos</div>
+        <div class="price">2.300 PPC</div>
+        <div class="item-actions">
+          <button class="buy" data-msg="Caja Epica anadida" data-name="Caja Epica" data-price="2300">Anadir</button>
+          <button class="preview-btn" data-crate="epic">Vista previa</button>
+        </div>
+      </article>
+
+      <article class="item slot r-legendary special-legendary">
+        <div class="icon icon-legendary"></div>
+        <div class="name">CAJA LEGENDARIA</div>
+        <div class="desc">Maxima rareza. Chance de rango y skins exclusivas</div>
+        <div class="price">4.800 PPC</div>
+        <div class="item-actions">
+          <button class="buy" data-msg="Caja Legendaria anadida" data-name="Caja Legendaria" data-price="4800">Anadir</button>
+          <button class="preview-btn" data-crate="legendary">Vista previa</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- Carrito lateral -->
+<div id="cartOverlay" class="cart-overlay"></div>
+<aside id="cartDrawer" class="cart-drawer">
+  <div class="cart-head">
+    <span class="pixel">TU CARRITO</span>
+    <button id="cartClose" class="mini-btn">CERRAR</button>
+  </div>
+  <div id="cartItems" class="cart-items">
+    <p class="cart-empty">El carrito esta vacio.</p>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total">
+      <span>TOTAL</span>
+      <span id="cartTotal">0 PPC</span>
+    </div>
+    <button id="cartCheckout" class="checkout-btn">Finalizar compra</button>
+  </div>
+</aside>
+
+<!-- Modal de apertura de caja -->
+<div id="crateOverlay" class="crate-overlay">
+  <div class="crate-modal panel">
+    <div class="crate-head">
+      <span id="crateTitle" class="pixel">CAJA</span>
+      <button id="crateClose" class="mini-btn">CERRAR</button>
+    </div>
+    <div class="roulette-viewport">
+      <div class="roulette-indicator"></div>
+      <div id="rouletteStrip" class="roulette-strip"></div>
+    </div>
+    <div class="crate-actions">
+      <button id="crateSpin" class="checkout-btn">Abrir</button>
+      <span class="crate-hint">Simulacion visual, no consume nada real</span>
+    </div>
+  </div>
+</div>
+
+<!-- Fondo ambiental de particulas -->
+<canvas id="ambient-canvas"></canvas>
+
+<footer>
+  <div>Los Papus · Programador MLX</div>
+  <span class="pixel">CATALOGO SIN SISTEMA DE PAGO — DEMO</span>
+</footer>
+
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/skinview3d@3.1.0/bundles/skinview3d.bundle.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
